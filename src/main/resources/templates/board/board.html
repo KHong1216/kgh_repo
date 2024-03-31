@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www/thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <link th:href="@{/css/bootstrap.min.css}"
+          href="../static/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container" style="max-width: 600px">
+    <div class="py-5 text-center">
+        <h2>게시판</h2>
+    </div>
+
+    <form action="" th:action th:object="${Post}" method="get">
+        <div class="row">
+            <div class="col">
+                <button class="w-100 btn btn-secondary btn-lg" type="button" th:onclick="|location.href='@{/board/add}'|">
+                글 작성
+                </button>
+            </div>
+
+            <div class="col">
+                <button class="w-100 btn btn-secondary btn-lg"  th:onclick="|location.href='@{/logout}'|" type="button">
+                    로그아웃
+                </button>
+            </div>
+
+            <div>
+                <table class = "table table-striped">
+                    <thead>
+                    <tr>
+                        <th>#</th>
+                        <th>제목</th>
+                        <th>내용</th>
+                        <th>작성자</th>
+<<<<<<< HEAD
+=======
+                        <th>조회수</th>
+>>>>>>> 72e1bcba2e927f5b6e781ed617bc9869b3635e05
+                        <th></th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr th:each="post : ${posts}">
+                        <td th:text="${post.id}"></td>
+                        <td th:text="${post.title}"></td>
+                        <td th:text="${post.content}"></td>
+                        <td th:text="${post.createMember.getUsername}"></td>
+<<<<<<< HEAD
+=======
+                        <td th:text="${post.view}"></td>
+>>>>>>> 72e1bcba2e927f5b6e781ed617bc9869b3635e05
+
+                        <td>
+                            <a th:if="${post.createMember.getUsername == loginMember.getUsername}" th:href="@{/board/{id}/edit (id=${post.id})}"
+                               class="btn btn-primary" role="button">수정</a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+                <th:block th:each="page:${#numbers.sequence(startPage,endPage)}">
+                    <a th:if="${page != nowPage}" th:href="@{/board/list(page=${page-1})}" th:text = "${page}"></a>
+                    <strong th:if="${page==nowPage}" th:text="${page}"></strong>
+                </th:block>
+            </div>
+        </div>
+    </form>
+    <hr class="my-4">
+</div>
+</body>
+</html>
